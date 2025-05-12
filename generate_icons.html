@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Icons</title>
+</head>
+<body>
+    <h2>Generating icons...</h2>
+    <div id="status"></div>
+
+    <script>
+        const sizes = [16, 48, 128];
+        const status = document.getElementById('status');
+
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Draw gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#4CAF50');
+            gradient.addColorStop(1, '#2196F3');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Draw shield shape
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.moveTo(size/2, size * 0.23);
+            ctx.lineTo(size * 0.7, size * 0.39);
+            ctx.lineTo(size * 0.7, size * 0.7);
+            ctx.lineTo(size * 0.3, size * 0.7);
+            ctx.lineTo(size * 0.3, size * 0.39);
+            ctx.closePath();
+            ctx.fill();
+
+            // Draw inner shield border
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = size * 0.03;
+            ctx.beginPath();
+            ctx.moveTo(size/2, size * 0.31);
+            ctx.lineTo(size * 0.64, size * 0.43);
+            ctx.lineTo(size * 0.64, size * 0.625);
+            ctx.lineTo(size * 0.36, size * 0.625);
+            ctx.lineTo(size * 0.36, size * 0.43);
+            ctx.closePath();
+            ctx.stroke();
+
+            return canvas.toDataURL('image/png');
+        }
+
+        function saveIcon(size) {
+            const link = document.createElement('a');
+            link.download = `icon${size}.png`;
+            link.href = createIcon(size);
+            link.click();
+            status.innerHTML += `<p>Generated icon${size}.png</p>`;
+        }
+
+        // Generate all icons
+        sizes.forEach(size => saveIcon(size));
+    </script>
+</body>
+</html> 
