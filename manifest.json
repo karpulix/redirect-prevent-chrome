@@ -4,10 +4,8 @@
   "version": "2.0",
   "description": "Prevents unauthorized redirects by asking for confirmation",
   "permissions": [
+    "activeTab",
     "storage"
-  ],
-  "host_permissions": [
-    "<all_urls>"
   ],
   "content_scripts": [
     {

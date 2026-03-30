@@ -21,7 +21,28 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('exceptions-btn').addEventListener('click', () => {
     chrome.tabs.create({ url: chrome.runtime.getURL('exceptions.html') });
   });
-  document.getElementById('testing-btn').addEventListener('click', () => {
-    chrome.tabs.create({ url: chrome.runtime.getURL('testing.html') });
-  });
-}); 
+
+//   const permissionsBtn = document.getElementById('permissions-btn');
+//   if (permissionsBtn) {
+//     // Check if permissions already granted
+//     chrome.permissions.contains({permissions: ['tabs', 'notifications']}, (result) => {
+//       if (result) {
+//         permissionsBtn.style.display = 'none';
+//       } else {
+//         permissionsBtn.style.display = '';
+//         permissionsBtn.addEventListener('click', () => {
+//           chrome.permissions.request({
+//             permissions: ['tabs', 'notifications']
+//           }, (granted) => {
+//             if (granted) {
+//               permissionsBtn.style.display = 'none';
+//               alert('Extra permissions granted!');
+//             } else {
+//               alert('Permissions were not granted.');
+//             }
+//           });
+//         });
+//       }
+//     });
+//   }
+});
