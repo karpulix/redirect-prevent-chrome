@@ -2,6 +2,17 @@
 <html>
 <head>
   <style>
+    #testing-gh-btn{
+        display: block;
+        padding: 5px;
+        text-align: center;
+        text-decoration: none;
+        background: #f0f0f0;
+        color: #333;
+    }
+    #testing-gh-btn:hover {
+        background: #e0e0e0;
+    }
     body {
       width: 260px;
       padding: 16px;
@@ -39,12 +50,12 @@
     .status.active { background: #e8f5e9; color: #2e7d32; }
     .status.inactive { background: #fbe9e7; color: #c62828; }
     .info {
-      margin-top: 10px; font-size: 11px;
+      margin-top: 10px; font-size: 10px;
       color: #999; line-height: 1.4;
     }
     .info table {
       width: 100%; border-collapse: collapse;
-      margin-top: 6px; font-size: 11px;
+      margin-top: 6px; font-size: 8px;
     }
     .info th {
       text-align: left; padding: 3px 4px;
@@ -91,18 +102,27 @@
   </div>
   <div id="status" class="status active">Active</div>
   <button class="btn" id="exceptions-btn">Exceptions</button>
-  <button class="btn" id="testing-btn">Testing</button>
   <div class="info">
     <table>
-      <tr><th>Redirect type</th><th>Catching</th></tr>
+      <tr><th>Redirect type</th><th>Caught?</th></tr>
       <tr><td>location.href</td><td class="yes">&#10003;</td></tr>
-      <tr><td>location.assign/replace</td><td class="yes">&#10003;</td></tr>
+      <tr><td>location.assign</td><td class="yes">&#10003;</td></tr>
+      <tr><td>location.replace</td><td class="yes">&#10003;</td></tr>
       <tr><td>window.open</td><td class="yes">&#10003;</td></tr>
+      <tr><td>&lt;a target="_blank"&gt;</td><td class="yes">&#10003;</td></tr>
+      <tr><td>&lt;form target="_blank"&gt;</td><td class="yes">&#10003;</td></tr>
+      <tr><td>meta refresh</td><td class="yes">&#10003;</td></tr>
       <tr><td>target=&quot;_blank&quot; links</td><td class="yes">&#10003;</td></tr>
       <tr><td>meta refresh</td><td class="yes">&#10003;</td></tr>
       <tr><td>Link clicks / form submit</td><td class="yes">&#10003;</td></tr>
       <tr><td>Server-side (301/302/307)</td><td class="no">&#10007;</td></tr>
     </table>
+    <a href="https://karpulix.github.io/redirect-prevent-chrome/testing.html" target="_blank" id="testing-gh-btn">Test all cases</a>
+
+    <div class="info" style="margin-top:8px; font-size:9px;">
+      <b>Disclaimer:</b> 
+      Not recommended for security purposes. It doesn't cover all edge cases and is primarily for debugging. Contributions to expand functionality on GitHub are welcome!
+    </div>
   </div>
   <div class="github">
     &#11088; <a href="https://github.com/karpulix/redirect-prevent-chrome" target="_blank">Star or contribute on GitHub</a>
