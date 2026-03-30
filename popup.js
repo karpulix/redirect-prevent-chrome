@@ -21,4 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('exceptions-btn').addEventListener('click', () => {
     chrome.tabs.create({ url: chrome.runtime.getURL('exceptions.html') });
   });
+  document.getElementById('testing-btn').addEventListener('click', () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL('testing.html') });
+  });
 }); 

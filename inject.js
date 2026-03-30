@@ -51,6 +51,17 @@
     return origOpen.call(this, url, ...args);
   };
 
+
+  // --- Popup anti-spam: limit popups per interval ---
+  let popupTimestamps = [];
+  function allowPopup() {
+    const now = Date.now();
+    popupTimestamps = popupTimestamps.filter(ts => now - ts < 2000);
+    if (popupTimestamps.length >= 2) return false;
+    popupTimestamps.push(now);
+    return true;
+  }
+
   // --- Intercept links with target="_blank" (new window/tab) ---
   document.addEventListener('click', function (e) {
     if (!enabled) return;
@@ -58,7 +69,19 @@
     if (!link) return;
     const url = link.href;
     if (!url || url.startsWith('javascript:')) return;
-    if (!confirm('Open in new tab:\n' + url + '\n\nAllow?')) {
+    if (!allowPopup() || !confirm('Open in new tab:\n' + url + '\n\nAllow?')) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
+  // --- Intercept <form target="_blank"> submits ---
+  document.addEventListener('submit', function (e) {
+    if (!enabled) return;
+    const form = e.target.closest('form[target="_blank"], form[target="_new"]');
+    if (!form) return;
+    const action = form.action || location.href;
+    if (!allowPopup() || !confirm('Open form in new tab:\n' + action + '\n\nAllow?')) {
       e.preventDefault();
       e.stopPropagation();
     }

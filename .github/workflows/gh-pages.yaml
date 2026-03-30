@@ -1,0 +1,29 @@
+name: Build GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Prepare docs folder
+        run: |
+          mkdir -p docs
+          cp testing.html docs/
+          cp testing.js docs/
+          # Можно добавить README или index.html если нужно
+
+      - name: Commit and push docs
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add docs/
+          git diff --cached --quiet || git commit -m "Update docs for GitHub Pages"
+          git push
