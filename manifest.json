@@ -1,16 +1,22 @@
 {
   "manifest_version": 3,
   "name": "Redirect Prevent",
-  "version": "1.0",
-  "description": "Prevents unauthorized redirects by asking for confirmation before leaving the page",
+  "version": "2.0",
+  "description": "Prevents unauthorized redirects by asking for confirmation",
   "permissions": [
-    "activeTab"
+    "storage"
   ],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["content.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
     }
   ],
   "action": {
