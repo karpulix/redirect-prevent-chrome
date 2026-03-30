@@ -1,8 +1,16 @@
+// Redirect Prevent — Testing page logic (English)
+// Each button triggers a different type of redirect or popup for testing the extension
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Redirect using location.href
   const go = url => () => { location.href = url; };
+  // Redirect using location.assign
   const assign = url => () => { location.assign(url); };
+  // Redirect using location.replace
   const replace = url => () => { location.replace(url); };
+  // Open a new tab/window
   const open = url => () => { window.open(url); };
+  // Trigger a meta refresh redirect
   const metaRefresh = url => () => {
     const m = document.createElement('meta');
     m.httpEquiv = 'refresh';

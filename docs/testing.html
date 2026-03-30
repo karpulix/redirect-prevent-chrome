@@ -16,14 +16,15 @@
   </style>
 </head>
 <body>
+
   <h1>Redirect Prevent — Testing</h1>
   <div class="desc">
-    Нажмите на каждую кнопку, чтобы проверить, как расширение реагирует на разные типы редиректов и popups.<br>
-    <b>Внимание:</b> Некоторые тесты могут открыть новые вкладки или показать confirm.<br>
-    После теста вернитесь на эту страницу вручную.
+    Click each button below to test how the extension reacts to different types of redirects and popups.<br>
+    <b>Note:</b> Some tests may open new tabs or show a confirmation dialog.<br>
+    After each test, return to this page manually.
   </div>
   <table>
-    <tr><th>Тип</th><th>Описание</th><th>Тест</th></tr>
+    <tr><th>Type</th><th>Description</th><th>Test</th></tr>
     <tr>
       <td>location.href</td>
       <td>window.location.href = ...</td>
@@ -65,12 +66,12 @@
     </tr>
     <tr>
       <td>Link click</td>
-      <td>Обычная ссылка</td>
+      <td>Normal link</td>
       <td><a href="https://example.com"><button>Go</button></a></td>
     </tr>
     <tr>
       <td>Form submit</td>
-      <td>Обычная форма</td>
+      <td>Normal form</td>
       <td>
         <form action="https://example.com" style="display:inline;">
           <button type="submit">Go</button>
